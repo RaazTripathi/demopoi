@@ -25,42 +25,62 @@ public class App
 {
     public static void main( String[] args ) throws InvalidFormatException, FileNotFoundException, IOException
     {
-        
-    	 Workbook wb3=WorkbookFactory.create(new FileInputStream("/home/raaz/Downloads/Book1.xlsx"));
-    	    Sheet sh=wb3.getSheet("sheet1");  
-    	    int rows=sh.getLastRowNum();
     	
-    	    System.out.println(rows);
+    	
+    	String rowval[]={"manchurian","cheez","onion","chili","Y","600","400"};
+        
+    	 Workbook wb=WorkbookFactory.create(new FileInputStream("G:\\Projects\\demopoi\\src\\main\\java\\Book1.xlsx"));
+    	    Sheet sh=wb.getSheet("sheet1");  
+    	    int rows=sh.getLastRowNum();
+    
+    	    Sheet sh2=wb.getSheet("sheet2");  
+    	    int rowcount=sh2.getLastRowNum();
+    	    
+    	    System.out.println(rowcount);
+    	 for (int a=0;a<=10;a++)
+    	 {
+    		 Row row=sh2.getRow(a);
+    		 if(row!=null)
+    		 {
+    			Cell cel=row.getCell(0);
+    			System.out.println(cel.getStringCellValue());
+    			
+    			if(cel.getStringCellValue().equals("cel.getStringCellValue()"))
+    			{
+    				Cell cel2=row.getCell(1);
+    				
+    				cel.setCellValue("Cheese");
+    			}
+    			
+    		 }
+    		 
+    		 
+    	 }
     	    
     	    
     	    
-    	    Map<String, Object[]> data = new HashMap<String, Object[]>();
-    	    data.put("1", new Object[] {"Emp No.", "Name", "Salary"});
-    	    data.put("2", new Object[] {1d, "John", 1500000d});
-    	    data.put("3", new Object[] {2d, "Sam", 800000d});
-    	    data.put("4", new Object[] {3d, "Dean", 700000d});
-    	     
-    	    Set<String> keyset = data.keySet();
-    	    int rownum = 0;
-    	    for (String key : keyset) {
-    	        Row row = sh.createRow(rownum++);
-    	        Object [] objArr = data.get(key);
-    	        int cellnum = 0;
-    	        for (Object obj : objArr) {
-    	            Cell cell = row.createCell(cellnum++);
-    	            if(obj instanceof Date) 
-    	                cell.setCellValue((Date)obj);
-    	            else if(obj instanceof Boolean)
-    	                cell.setCellValue((Boolean)obj);
-    	            else if(obj instanceof String)
-    	                cell.setCellValue((String)obj);
-    	            else if(obj instanceof Double)
-    	                cell.setCellValue((Double)obj);
-    	        }
-    	    }
+    	 /*   Row lastrow=sh.getRow(rows);
+    	    
+    	    
+    	    
+    	    
+    	   Row row= sh.createRow(rows+1);
+    	int i=0;
+    	   for(String str:rowval){
+    	Cell cel=   row.createCell(i);
+    	   
+    	   cel.setCellValue(str);
+    	   
+    	   i++;
+    	   }*/  
     	    FileOutputStream out = 
-    	            new FileOutputStream(new File("/home/raaz/Downloads/Book1.xlsx"));
-    	    wb3.write(out);
+    	            new FileOutputStream(new File("G:\\Projects\\demopoi\\src\\main\\java\\Book1.xlsx"));
+    	    wb.write(out);
     	    out.close();
+    	    
+  	    
+    	    
+    	    
+    	    
     }
 }
