@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +17,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFDataValidation;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Hello world!
@@ -29,14 +33,23 @@ public class App
     	
     	String rowval[]={"manchurian","cheez","onion","chili","Y","600","400"};
         
-    	 Workbook wb=WorkbookFactory.create(new FileInputStream("G:\\Projects\\demopoi\\src\\main\\java\\Book1.xlsx"));
+    	XSSFWorkbook wb=(XSSFWorkbook) WorkbookFactory.create(new FileInputStream("G:\\Projects\\demopoi\\src\\main\\java\\Book1.xlsx"));
     	    Sheet sh=wb.getSheet("sheet1");  
     	    int rows=sh.getLastRowNum();
     
-    	    Sheet sh2=wb.getSheet("sheet2");  
+    	    XSSFSheet sh2=wb.getSheet("sheet2");  
     	    int rowcount=sh2.getLastRowNum();
     	    
     	    System.out.println(rowcount);
+    	    
+    	    
+    	    
+    	    List<XSSFDataValidation> validations=   sh2.getDataValidations();
+    	  
+    	    
+    	    
+    	    
+    	    
     	 for (int a=0;a<=10;a++)
     	 {
     		 Row row=sh2.getRow(a);
@@ -45,11 +58,16 @@ public class App
     			Cell cel=row.getCell(0);
     			System.out.println(cel.getStringCellValue());
     			
-    			if(cel.getStringCellValue().equals("cel.getStringCellValue()"))
+    			if(cel.getStringCellValue().equals("Ingridient2"))
     			{
+    				System.out.println();
     				Cell cel2=row.getCell(1);
     				
-    				cel.setCellValue("Cheese");
+    				System.out.println(cel2.getStringCellValue());
+    				
+    				
+    			cel2.getDateCellValue();
+    				
     			}
     			
     		 }
